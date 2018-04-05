@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue demo</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="main.css">
+
+
+
+	<script>
+	window.addEventListener('load', () => {
+		var lo = new Vue({
+	  el: '#root',
+	  data: {
+	    value: '',
+	    message: '0',
+	    equation: '',
+	    cal: '',
+			seen: "false",
+			result: [ ]
+	  },
+	  methods: {
+	    input: function(num) {
+	      if(num == '.' && this.message.includes('.'))
+	        return; // OM TALET ENDAST INNEHÅLLER "."
+	      else if(this.message == '0'){ // OM TALET ÄR LIKA MED NOLL
+	        this.message = num;
+	        this.value = num;
+	      }
+	      else {
+	        this.value += num; // VALUE BLIR == PARAMETER
+	        this.message = this.value; // MESSAGE BLIR == VÄRDET AV VALUE
+	      }
+	      //this.equation += num;
+	      //console.log(this.equation);
+	    },
+	    clear: function() { //ÅTERSTÄLLER ALLA VÄRDEN
+	      //if(this.message == '0')
+	      this.equation = '';
+	      this.message = '0';
+	      this.value = '';
+	    },
+	    operator: function(opt) {
+	      this.cal = opt; // TAR IN VILKEN OPERATOR SOM ANVÄNDS IFALL EUQAL KÖRS
+	      this.equation += this.value; // GÖR EQUATION == VÄRDET I VALUE
+				console.log(this.equation);
+				console.log(this.value);
+				console.log(this.message);
+
+				console.log("Inside");
+				this.equation.toString();
+ 				this.message = eval(this.equation) // GÖR MESSAGE == EQUATION TILL EN STRING FÖR EVAL()
+	      this.equation = this.message; // EQUATION == MESSAGE
+	      this.equation += opt; // EQUATION VÄRDET + OPERATOR
+	      this.value = ''; // ÅTERSTÄLLER VALUE
+
+	      console.log(this.equation);
+				console.log(this.message);
+
+	    },
+	    equal: function() {
+				let results = [];
+	      if(this.equation == '') //OM EQUATION ÄR TOM SÅ KÖRS RETUNERAR FUNKTION
+	        return;
+	      if(this.cal != '')
+	        this.equation += this.message;
+	      this.message = eval(this.equation).toString();
+	      console.log(eval(this.equation));
+	      this.value = '';
+	      this.cal = '';
+	      this.equation = this.message;
+				this.result.push(this.equation);
+				console.log(this.equation);
+				console.log(this.result);
+	    },
+			squared: function(){ // Upphöjt till två. Nuvarande talet gånger sig själv.
+				this.value = this.message;
+				this.message *= this.value;
+				this.value = this.message;
+				 this.value = '';
+
+			},
+			squareRoot: function(){ // Kvadratroten ur nuvarande talet.
+				this.message = Math.sqrt(this.value);
+				 this.value = '';
+		},
+		toogle: function(){
+			if(this.seen == "false"){
+				this.seen = "true";
+				console.log(this.seen);
+			}else{
+				this.seen = "false";
+				console.log(this.seen);
+			}
+		},
+	 }
+	})
+	window.addEventListener('keyup', function(event) {
+		if(event.keyCode == 49){
+			console.log("1");
+			lo.input('1');
+		}else if(event.keyCode == 50){
+			console.log("2");
+			lo.input('2');
+		}else if(event.keyCode == 51){
+			console.log("3");
+			lo.input('3');
+		}else if(event.keyCode == 52){
+			console.log("4");
+			lo.input('4');
+		}else if(event.keyCode == 53){
+			console.log("5");
+			lo.input('5');
+		}else if(event.keyCode == 54){
+			console.log("6");
+			lo.input('6');
+		}else if(event.keyCode == 55){
+			console.log("7");
+			lo.input('7');
+		}else if(event.keyCode == 56){
+			console.log("8");
+			lo.input('8');
+		}else if(event.keyCode == 57){
+			console.log("9");
+			lo.input('9');
+		}else if(event.keyCode == 48){
+			console.log("0");
+			lo.input('0');
+		}
+});
+});  // window load
+	</script>
+</head>
+
+<body>
+
+	<div id="root">
+	<div id="dropout" v-if="seen == 'true'">
+		<p id="toggleHistory" v-on:click="toogle">=</p>
+		<h1 id="memory">History</h1>
+		<ul id="resultList">
+			<li v-for="item in result">
+				{{item}}
+			</li>
+		</ul>
+	</div>
+	<div v-else></div>
+	<div id="displayNum">
+		<p id="toggleHistory" v-on:click="toogle">=</p>
+		<p id="output">{{message}}</p>
+	</div>
+
+		<div class="containerButtons">
+			<div class="button" v-on:click="clear">C</div>
+			<div class="button" v-on:click="squareRoot" v-if="message % 2 == 0 && message > 0">V</div>
+			<div v-else class="button"></div>
+			<div class="button" v-on:click="squared">x2</div>
+			<div class="button" v-on:click="operator('/')">/</div>
+			<div class="button" v-on:click="input('7')">7</div>
+			<div class="button" v-on:click="input('8')">8</div>
+			<div class="button" v-on:click="input('9')">9</div>
+			<div class="button" v-on:click="operator('*')">X</div>
+			<div class="button" v-on:click="input('4')">4</div>
+			<div class="button" v-on:click="input('5')">5</div>
+			<div class="button" v-on:click="input('6')">6</div>
+			<div class="button" v-on:click="operator('-')">-</div>
+			<div class="button" v-on:click="input('1')">1</div>
+			<div class="button" v-on:click="input('2')">2</div>
+			<div class="button" v-on:click="input('3')">3</div>
+			<div class="button" v-on:click="operator('+')" >+</div>
+			<div class="button" v-on:click="input('0')">0</div>
+			<div class="button" v-on:click="input('.')">.</div>
+			<div class="resultButton" v-on:click="equal">=</div>
+		</div>
+	</div>
+
+</body>
+</html>

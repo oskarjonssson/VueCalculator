@@ -1,0 +1,128 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+html, body {
+  -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+  padding-top:10%;
+  height: 100%;
+  margin: 0;
+
+}
+body{
+
+  margin: 0;
+  padding: 0;
+
+  background-image: linear-gradient(to right top, #8c47cb, #8e49cc, #8f4ccc, #914ecd, #9250cd);
+}
+#root{
+  margin: 0 auto;
+  width: 475px;
+  overflow: auto;
+  position: relative;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  -webkit-box-shadow: -1px 4px 28px -1px rgba(0,0,0,0.2);
+  -moz-box-shadow: -1px 4px 28px -1px rgba(0,0,0,0.2);
+  box-shadow: -1px 4px 28px -1px rgba(0,0,0,0.2);
+
+}
+
+#displayNum{
+  position: relative;
+  font-family: 'Montserrat';
+  color: #5d5d5d;
+  font-size: 40px;
+  height: 130px;
+  width: 100%;
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  background-color: #dedede;
+  border-radius:0;
+}
+#output{
+  display: flex;
+  align-self: flex-end;
+  margin-right: 15px;
+}
+#toggleHistory{
+  font-family: 'Montserrat';
+  position: absolute;
+  top: 5px;
+  right: 18px;
+
+
+  font-size: 35px;
+  border: none;
+  cursor: pointer;
+
+}
+
+#dropout{
+  width: 75%;
+  z-index: 99;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: #9250cdb5;
+  color: #e8e8e8;
+}
+
+#memory{
+  font-size: 19px;
+  letter-spacing: 1.5px;
+  margin: 15px 0 0 15px;
+  font-family: 'Montserrat';
+}
+
+#resultList{
+  list-style: none;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin: 15px 0 0 15px;
+  font-size: 19px;
+}
+#resultList li{
+  margin: 5px 0 0 0;
+}
+.containerButtons{
+  display: flex;
+  user-select: none;
+  cursor: pointer;
+  font-family: 'Montserrat';
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #transparent;
+}
+.button{
+  width: 25%;
+  padding: 2rem 0;
+  font-size: 16px;
+  text-align: center;
+  border: transparent 1px solid;
+  box-sizing: border-box;
+}
+.resultButton{
+    width: 50%;
+    padding: 2rem 0;
+    font-size: 16px;
+    text-align: center;
+    border: transparent 1px solid;
+    box-sizing: border-box;
+}
+.button:hover {
+  background-color: white;
+}
+.resultButton:hover {
+  background-color: white;
+}
