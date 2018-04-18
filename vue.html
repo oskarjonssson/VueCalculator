@@ -16,7 +16,7 @@
 	  el: '#root',
 	  data: {
 	    value: '',
-	    message: '	',
+	    message: '',
 	    equation: '',
 	    cal: '',
 			full: '',
@@ -29,15 +29,17 @@
 	      if(num == '.' && this.message.includes('.'))
 	        return; // OM TALET ENDAST INNEHÅLLER "."
 	      else if(this.message == '0'){ // OM TALET ÄR LIKA MED NOLL
+					//this.value = num;
 	        this.message = num;
-	        this.value = num;
+					this.value = num;
 					this.str += this.value;
+					console.log(this.message);
 	      }
 	      else {
 	        this.value += num; // VALUE BLIR == PARAMETER
 	        this.message = this.value; // MESSAGE BLIR == VÄRDET AV VALUE
 					this.str += this.value;
-
+					console.log(this.message);
 	      }
 	      //this.equation += num;
 	      //console.log(this.equation);
@@ -45,7 +47,7 @@
 	    clear: function() { //ÅTERSTÄLLER ALLA VÄRDEN
 
 	      this.equation = '';
-	      this.message = '0';
+	      this.message = '';
 	      this.value = '';
 				this.str = '';
 	    },
@@ -111,6 +113,39 @@
 		},
 	 }
 	})
+	window.addEventListener('keyup', function(event) {
+	if(event.keyCode == 49){
+		console.log("1");
+		lo.input('1');
+	}else if(event.keyCode == 50){
+		console.log("2");
+		lo.input('2');
+	}else if(event.keyCode == 51){
+		console.log("3");
+		lo.input('3');
+	}else if(event.keyCode == 52){
+		console.log("4");
+		lo.input('4');
+	}else if(event.keyCode == 53){
+		console.log("5");
+		lo.input('5');
+	}else if(event.keyCode == 54){
+		console.log("6");
+		lo.input('6');
+	}else if(event.keyCode == 55){
+		console.log("7");
+		lo.input('7');
+	}else if(event.keyCode == 56){
+		console.log("8");
+		lo.input('8');
+	}else if(event.keyCode == 57){
+		console.log("9");
+		lo.input('9');
+	}else if(event.keyCode == 48){
+		console.log("0");
+		lo.input('0');
+	}
+});
 });  // window load
 	</script>
 </head>
