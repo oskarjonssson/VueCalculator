@@ -22,7 +22,7 @@ body{
 #root{
   margin: 0 auto;
   width: 475px;
-  height: 555px;
+  height: 560px;
   overflow: auto;
   position: relative;
   background-color: #f3f3f3;
@@ -33,19 +33,22 @@ body{
 
 }
 
+
 #displayNum{
-  position: relative;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+   box-sizing: border-box;         /* Opera/IE 8+ */
   font-family: 'Montserrat';
+  text-align: right;
   color: #5d5d5d;
   font-size: 40px;
   height: 130px;
   width: 100%;
-  padding: 0;
   border: none;
   display: flex;
+  padding: 50px 15px 0 0;
   flex-wrap: wrap;
   justify-content: flex-end;
-
   background-color: #dedede;
   border-radius:0;
 }
